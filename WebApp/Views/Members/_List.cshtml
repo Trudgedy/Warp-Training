@@ -1,2 +1,34 @@
-﻿
-<p>List will go here</p>
+﻿@model List<Library.Data.Models.Common.Person>
+<h2>Avaiable People:</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@{
+    var id = Request.Url.Segments[3];
+    Html.ActionLink("Add", "Add", id);
+}
+ 
