@@ -81,6 +81,13 @@ namespace Library.Service.Common
         {
             _groupRepo.Delete(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
+
+        }
+
+        public void Insert(Member member, string overload)
+        {
+            _memberRepo.Insert(member);
+            _cacheManager.RemoveByPattern(KEY_PATTERN);
         }
     }
 

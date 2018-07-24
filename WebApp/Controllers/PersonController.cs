@@ -24,12 +24,13 @@ namespace WebApp.Controllers
 		{
 			var people = _personService.GetAll();
 
-			//todo: use automapper
+			
 			var model = people.Select(p=> new PersonModel{
 				Name = p.Name,
 				Email = p.Email
 			}).ToList();
 
+            
 
 			return View(people);
 		}

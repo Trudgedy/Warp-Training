@@ -13,10 +13,27 @@ namespace WebApp.Controllers
     public class MemberController : Controller
     {
 
-        public ActionResult Add(int group)
+        IPersonService _personService;
+
+        public MemberController(IPersonService personService)
+        {
+            _personService = personService;
+        }
+
+        public ActionResult Add(int id)
         {
 
-            return View();
+            var people = _personService.GetAll();
+
+            var PeopleChoices = people.Select(p => new SelectListItem
+            {
+                Value = p.PersonId + "",
+                Text = p.Name
+
+            });
+
+
+            return View(PeopleChoices);
         }
 
 

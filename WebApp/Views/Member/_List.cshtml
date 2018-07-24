@@ -27,8 +27,7 @@
 
 </table>
 
-@{
-    var id = Request.Url.Segments[3];
-    Html.ActionLink("Add", "Add", id);
-}
+@Html.ActionLink("Add", "Add", "Member", new {id = Request.Url.Segments[3] }, null)
+
+
  

@@ -146,7 +146,7 @@ namespace WebApp.Controllers
                 Email = p.Email
             }).ToList();
 
-            return PartialView("~/Views/Members/_List.cshtml", people);
+            return PartialView("~/Views/Member/_List.cshtml", people);
             }
         
         }
