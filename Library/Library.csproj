@@ -95,6 +95,7 @@
     <Compile Include="Data\IDataRepository.cs" />
     <Compile Include="Data\Models\BaseEntity.cs" />
     <Compile Include="Data\Models\Common\Group.cs" />
+    <Compile Include="Data\Models\Common\GroupModel.cs" />
     <Compile Include="Data\Models\Common\Member.cs" />
     <Compile Include="Data\Models\Common\PersonModel.cs" />
     <Compile Include="Data\Models\Common\Person.cs" />
@@ -103,6 +104,8 @@
     <Compile Include="Service\Cache\CacheExtensions.cs" />
     <Compile Include="Service\Cache\ICacheManager.cs" />
     <Compile Include="Service\Cache\MemoryCacheManager.cs" />
+    <Compile Include="Service\Common\GroupService.cs" />
+    <Compile Include="Service\Common\IGroupService.cs" />
     <Compile Include="Service\Common\IPersonService.cs" />
     <Compile Include="Service\Common\PersonService.cs" />
   </ItemGroup>

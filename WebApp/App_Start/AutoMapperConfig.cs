@@ -15,6 +15,7 @@ namespace WebApp.App_Start
             {
                 // Business Mapping 
                 cfg.CreateMap<Person, PersonModel>().ReverseMap();
+                cfg.CreateMap<Group, GroupModel>().ReverseMap();
             });
         }
     }

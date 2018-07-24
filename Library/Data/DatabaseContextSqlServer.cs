@@ -101,5 +101,6 @@ namespace Library.Data
 
         public System.Data.Entity.IDbSet<Library.Data.Models.Common.Person> People { get; set; }
 
-	}
+        public System.Data.Entity.DbSet<Library.Data.Models.Common.Group> Groups { get; set; }
+    }
 }

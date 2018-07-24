@@ -41,21 +41,21 @@ namespace Library.Service.Common
 		{
 			String key = String.Format(KEY_GETBYID, id);
 
-			//return _cacheManager.Get<Data.Models.Common.Person>(key, 10, () =>
-			//{
+			return _cacheManager.Get<Data.Models.Common.Person>(key, 10, () =>
+			{
 				return _personRepo.Table.FirstOrDefault(p=>p.PersonId == id);
-			//});
+			});
 		}
 
 		public Data.Models.Common.Person FindById(int id)
 		{
 			String key = String.Format(KEY_GETBYID, id);
 
-			//return _cacheManager.Get<Data.Models.Common.Person>(key, 10, () =>
-			//{
-				return _personRepo.GetById(id);
-			//});
-		}
+            return _cacheManager.Get<Data.Models.Common.Person>(key, 10, () =>
+            {
+                return _personRepo.GetById(id);
+            });
+        }
 
 		public void Insert(Person person)
 		{
