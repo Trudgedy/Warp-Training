@@ -139,12 +139,8 @@ namespace WebApp.Controllers
             public ActionResult List()
             {
             var people = _personService.GetAll();
-
-            var model = people.Select(p => new PersonModel
-            {
-                Name = p.Name,
-                Email = p.Email
-            }).ToList();
+            
+            
 
             return PartialView("~/Views/Member/_List.cshtml", people);
             }

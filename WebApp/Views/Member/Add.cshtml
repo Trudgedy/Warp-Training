@@ -1,4 +1,4 @@
-﻿@model Library.Data.Models.Common.PersonModel
+﻿@*@model Library.Data.Models.Common.PersonModel*@
 
 @{
     ViewBag.Title = "Add";
@@ -10,10 +10,10 @@
 
 <div>
     Name:
-    
+    @Html.DropDownList("PersonID", new SelectList(ViewBag.PersonId, "PersonId", "Name"))
    
-
+    @Html.ActionLink("Add Member", "LinkMember", "Member", new { GroupId = Request.Url.Segments[3]}, null)
 </div>
 
 
-
+@*new { GroupId = Request.Url.Segments[3]}*@

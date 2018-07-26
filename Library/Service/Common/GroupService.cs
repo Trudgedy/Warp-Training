@@ -18,6 +18,7 @@ namespace Library.Service.Common
         private const string KEY_PATTERN = "WarpTraining.Group";
         private const string KEY_GET_ALL = "WarpTraining.Group.GetAll()";
         private const string KEY_GET_BY_ID = "WarpTraining.Group.GetById({0})";
+        
         #endregion
 
         #region Fields
@@ -35,11 +36,11 @@ namespace Library.Service.Common
         }
         #endregion
 
-        public List<Data.Models.Common.Group> GetAll(int pageSize = 1000, int page = 0 )
+        public List<Data.Models.Common.Group> GetAll(int pageSize = 1000, int page = 0)
         {
             return _cacheManager.Get<List<Data.Models.Common.Group>>(KEY_GET_ALL, 10, () =>
             {
-                return _groupRepo.Table.OrderBy(g => g.Name).Skip(page*pageSize).Take(pageSize).ToList();
+                return _groupRepo.Table.OrderBy(g => g.Name).Skip(page * pageSize).Take(pageSize).ToList();
             });
         }
 
@@ -72,7 +73,7 @@ namespace Library.Service.Common
 
         public void Update(Group group)
         {
-            
+
             _groupRepo.Update(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
         }
@@ -89,6 +90,6 @@ namespace Library.Service.Common
             _memberRepo.Insert(member);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
         }
-    }
 
+    }
 }

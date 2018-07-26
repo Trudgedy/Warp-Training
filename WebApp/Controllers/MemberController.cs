@@ -23,19 +23,20 @@ namespace WebApp.Controllers
         public ActionResult Add(int id)
         {
 
-            var people = _personService.GetAll();
+            var person = _personService.GetAll();
 
-            var PeopleChoices = people.Select(p => new SelectListItem
-            {
-                Value = p.PersonId + "",
-                Text = p.Name
+            ViewBag.PersonId = person;
+            
 
-            });
-
-
-            return View(PeopleChoices);
+            return View();
         }
 
+        public ActionResult LinkMember(int GroupId)
+        {
+            String PersonId = Request["PersonID"];
 
+            return RedirectToAction("Edit", "Groups", new { id = GroupId });
+            
+        }
     }
 }

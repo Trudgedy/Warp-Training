@@ -4,24 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Library.Data.Models.Common
 {
-	public class PersonModel 
+	public class PersonListModel 
 	{
-		public PersonModel()
-		{
-
-		}
-        
+		
+        [Display(Name = "User Name:")]
 		public int PersonId { get; set; }
 
         [Required]
-        public String Name { get; set; }
-
-		public String Email { get; set; }
-
-		public String FullName { get; set; }
+        public IEnumerable<SelectListItem> Name { get; set; }
 
 	}
 }

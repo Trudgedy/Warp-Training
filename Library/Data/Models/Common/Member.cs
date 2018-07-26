@@ -8,7 +8,8 @@ namespace Library.Data.Models.Common
 {
 	public class Member : BaseEntity
 	{
-		public int PersonId { get; set; }
+        
+        public int PersonId { get; set; }
 
 		public int GroupId { get; set; }
 
