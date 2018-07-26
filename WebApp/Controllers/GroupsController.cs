@@ -14,11 +14,13 @@ namespace WebApp.Controllers
     {
         IGroupService _groupService;
         IPersonService _personService;
+        IMemberService _memberService;
 
         public GroupsController(IGroupService groupService, IPersonService personService)
         {
             _groupService = groupService;
             _personService = personService;
+            
         }
 
         // GET: Groups
@@ -27,10 +29,7 @@ namespace WebApp.Controllers
 
             var group = _groupService.GetAll();
 
-            var model = group.Select(g => new GroupModel
-            {
-                Name = g.Name
-            }).ToList();
+            
 
 
 
@@ -138,11 +137,16 @@ namespace WebApp.Controllers
         
             public ActionResult List()
             {
-            var people = _personService.GetAll();
-            
-            
+            //var person = _personService.GetById(1);
+            //var person1 = _personService.GetById(2);
+            //var People = new List<Person>();
 
-            return PartialView("~/Views/Member/_List.cshtml", people);
+            //People.Add(person);
+            //People.Add(person1);
+
+            var People = _personService.GetAll();
+
+            return PartialView("~/Views/Member/_List.cshtml", People);
             }
         
         }

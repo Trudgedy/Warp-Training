@@ -107,7 +107,9 @@
     <Compile Include="Service\Cache\MemoryCacheManager.cs" />
     <Compile Include="Service\Common\GroupService.cs" />
     <Compile Include="Service\Common\IGroupService.cs" />
+    <Compile Include="Service\Common\IMemberService.cs" />
     <Compile Include="Service\Common\IPersonService.cs" />
+    <Compile Include="Service\Common\MemberService.cs" />
     <Compile Include="Service\Common\PersonService.cs" />
   </ItemGroup>
   <ItemGroup>
