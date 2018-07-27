@@ -19,7 +19,7 @@ namespace Library.Service.Common
         private const string KEY_PATTERN = "WarpTraining.Group";
         private const string KEY_GET_ALL = "WarpTraining.Group.GetAll()";
         private const string KEY_GET_BY_ID = "WarpTraining.Group.GetById({0})";
-        private const string KEY_GET_GROUP_LIST = "WarpTraining.Group.GetGroupList()";
+        private const string KEY_GET_GROUP_LIST = "WarpTraining.GroupModel.GetGroupList()";
         #endregion
 
         #region Fields
@@ -88,6 +88,7 @@ namespace Library.Service.Common
             _groupRepo.Insert(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
             _cacheManager.RemoveByPattern("WarpTraining.Member");
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
         }
 
         public void Update(Group group)
@@ -96,6 +97,7 @@ namespace Library.Service.Common
             _groupRepo.Update(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
             _cacheManager.RemoveByPattern("WarpTraining.Member");
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
         }
 
         public void Delete(Group group)
@@ -103,6 +105,7 @@ namespace Library.Service.Common
             _groupRepo.Delete(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
             _cacheManager.RemoveByPattern("WarpTraining.Member");
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
 
         }
 
