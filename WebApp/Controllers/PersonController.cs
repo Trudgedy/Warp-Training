@@ -30,7 +30,7 @@ namespace WebApp.Controllers
 				Email = p.Email
 			}).ToList();
 
-            
+			
 
 			return View(people);
 		}
