@@ -18,9 +18,9 @@ namespace Library.Data.Models.Common
 
         [Required]
         public String Name { get; set; }
-
+        [Required]
 		public String Email { get; set; }
-
+        
 		public String FullName { get; set; }
 
 	}
