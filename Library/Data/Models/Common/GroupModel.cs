@@ -19,5 +19,7 @@ namespace Library.Data.Models.Common
         [Required]
         public String Name { get; set; }
 
+        public int Count { get; set; }
+
     }
 }

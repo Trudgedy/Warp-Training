@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Library.Data;
 using Library.Data.Models.Common;
 using Library.Services.Cache;
+using AutoMapper;
 
 namespace Library.Service.Common
 {
@@ -18,7 +19,7 @@ namespace Library.Service.Common
         private const string KEY_PATTERN = "WarpTraining.Group";
         private const string KEY_GET_ALL = "WarpTraining.Group.GetAll()";
         private const string KEY_GET_BY_ID = "WarpTraining.Group.GetById({0})";
-        
+        private const string KEY_GET_GROUP_LIST = "WarpTraining.Group.GetGroupList()";
         #endregion
 
         #region Fields
@@ -43,6 +44,23 @@ namespace Library.Service.Common
                 return _groupRepo.Table.OrderBy(g => g.Name).Skip(page * pageSize).Take(pageSize).ToList();
             });
         }
+
+        public List<Data.Models.Common.GroupModel> GetGroupList(int pageSize = 1000, int page = 0)
+        {
+            var key = String.Format(KEY_GET_GROUP_LIST);
+
+            return _cacheManager.Get<List<Data.Models.Common.GroupModel>>(key, 10, () =>
+            {
+                var result = from g in _groupRepo.Table
+                             select new GroupModel {
+                                 GroupId = g.GroupId,
+                                 Name = g.Name,
+                                 Count = _memberRepo.Table.Where(m => m.GroupId == g.GroupId).Count()
+                             };
+
+                return result.OrderBy(p => p.Name).Skip(page * pageSize).Take(pageSize).ToList(); ;
+            });
+            }
 
         public Group GetById(int id)
         {
@@ -69,6 +87,7 @@ namespace Library.Service.Common
         {
             _groupRepo.Insert(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
+            _cacheManager.RemoveByPattern("WarpTraining.Member");
         }
 
         public void Update(Group group)
@@ -76,19 +95,15 @@ namespace Library.Service.Common
 
             _groupRepo.Update(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
+            _cacheManager.RemoveByPattern("WarpTraining.Member");
         }
 
         public void Delete(Group group)
         {
             _groupRepo.Delete(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
+            _cacheManager.RemoveByPattern("WarpTraining.Member");
 
-        }
-
-        public void Insert(Member member, string overload)
-        {
-            _memberRepo.Insert(member);
-            _cacheManager.RemoveByPattern(KEY_PATTERN);
         }
 
     }

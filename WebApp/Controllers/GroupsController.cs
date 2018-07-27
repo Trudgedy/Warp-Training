@@ -16,10 +16,11 @@ namespace WebApp.Controllers
         IPersonService _personService;
         IMemberService _memberService;
 
-        public GroupsController(IGroupService groupService, IPersonService personService)
+        public GroupsController(IGroupService groupService, IPersonService personService, IMemberService memberService)
         {
             _groupService = groupService;
             _personService = personService;
+            _memberService = memberService;
             
         }
 
@@ -27,7 +28,7 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
 
-            var group = _groupService.GetAll();
+            var group = _groupService.GetGroupList();
 
             
 
@@ -135,18 +136,12 @@ namespace WebApp.Controllers
         }
 
         
-            public ActionResult List()
+            public ActionResult List(int id)
             {
-            //var person = _personService.GetById(1);
-            //var person1 = _personService.GetById(2);
-            //var People = new List<Person>();
+            
+            var Members = _memberService.GetPeople(id);
 
-            //People.Add(person);
-            //People.Add(person1);
-
-            var People = _personService.GetAll();
-
-            return PartialView("~/Views/Member/_List.cshtml", People);
+            return PartialView("~/Views/Member/_List.cshtml", Members);
             }
         
         }

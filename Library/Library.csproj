@@ -97,7 +97,6 @@
     <Compile Include="Data\Models\Common\Group.cs" />
     <Compile Include="Data\Models\Common\GroupModel.cs" />
     <Compile Include="Data\Models\Common\Member.cs" />
-    <Compile Include="Data\Models\Common\PersonListModel.cs" />
     <Compile Include="Data\Models\Common\PersonModel.cs" />
     <Compile Include="Data\Models\Common\Person.cs" />
     <Compile Include="Migrations\Configuration.cs" />

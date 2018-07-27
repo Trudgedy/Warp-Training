@@ -36,10 +36,11 @@ namespace WebApp.App_Start
 
 			builder.RegisterType<Library.Services.Cache.MemoryCacheManager>().As<Library.Services.Cache.ICacheManager>().InstancePerRequest();
 			builder.RegisterType<Library.Service.Common.PersonService>().As<Library.Service.Common.IPersonService>().InstancePerRequest();
-            builder.RegisterType<Library.Service.Common.GroupService>().As<Library.Service.Common.IGroupService>().InstancePerRequest();
+			builder.RegisterType<Library.Service.Common.GroupService>().As<Library.Service.Common.IGroupService>().InstancePerRequest();
+			builder.RegisterType<Library.Service.Common.MemberService>().As<Library.Service.Common.IMemberService>().InstancePerRequest();
 
-            // Create the object container and set the dependency resolver
-            IContainer container = builder.Build();
+			// Create the object container and set the dependency resolver
+			IContainer container = builder.Build();
 
 			// Set the ASP.NET MVC resolver
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

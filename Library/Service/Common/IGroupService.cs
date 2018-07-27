@@ -11,7 +11,10 @@ namespace Library.Service.Common
     {
             List<Group> GetAll(int pageSize = 1000, int page = 0);
 
+            List<GroupModel> GetGroupList(int pageSize = 1000, int page = 0);
+
             Group GetById(int id);
+
 
             Group FindById(int id);
 
