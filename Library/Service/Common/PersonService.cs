@@ -15,8 +15,7 @@ namespace Library.Service.Common
 		protected const String KEY_GETALL = "WarpTraining.Person.GetAll()";
 		protected const String KEY_GETBYID = "WarpTraining.Person.GetById({0})";
 		protected const String PATTERN = "WarpTraining.Person";
-        protected const String KEY_GET_MEMBER_BY_ID = "WarpTraining.Member.GetById({0})";
-        protected const String KEY_GETALL_MEMBERS = "WarpTraining.Person.GetAll()";
+        
 
         IDataRepository<Person> _personRepo;
 		IDataRepository<Member> _memberRepo;
@@ -77,12 +76,6 @@ namespace Library.Service.Common
 			_cacheManager.RemoveByPattern(PATTERN);
 		}
 
-        public List<Data.Models.Common.Member> GetMembers(int id, int pageSize = 1000, int page = 0)
-        {
-            return _cacheManager.Get<List<Data.Models.Common.Member>>(KEY_GETALL_MEMBERS, 10, () =>
-            {
-                return _memberRepo.Table.OrderBy(p => p.GroupId.Skip(page * pageSize).Take(pageSize).ToList();
-            });
-        }
+       
     }
 }

@@ -14,13 +14,11 @@ namespace Library.Service.Common
 		Person GetById(int id);
 
 		Person FindById(int id);
+    
 
-		
 		void Insert(Person person);
 
-
 		void Update(Person person);
-
 
 		void Delete(Person person);
 

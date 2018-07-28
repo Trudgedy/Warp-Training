@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Library.Data.Models.Common.Group>
+﻿@model IEnumerable<Library.Data.Models.Common.GroupModel>
 
 @{
     ViewBag.Title = "Index";
@@ -24,7 +24,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GroupId }) |
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.ActionLink("Edit" , "Edit", new { id=item.GroupId }) |
             @Html.ActionLink("Details", "Details", new { id=item.GroupId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.GroupId })
         </td>

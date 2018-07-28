@@ -14,23 +14,23 @@ namespace WebApp.Controllers
     {
         IGroupService _groupService;
         IPersonService _personService;
+        IMemberService _memberService;
 
-        public GroupsController(IGroupService groupService, IPersonService personService)
+        public GroupsController(IGroupService groupService, IPersonService personService, IMemberService memberService)
         {
             _groupService = groupService;
             _personService = personService;
+            _memberService = memberService;
+            
         }
 
         // GET: Groups
         public ActionResult Index()
         {
 
-            var group = _groupService.GetAll();
+            var group = _groupService.GetGroupList();
 
-            var model = group.Select(g => new GroupModel
-            {
-                Name = g.Name
-            }).ToList();
+            
 
 
 
@@ -136,13 +136,12 @@ namespace WebApp.Controllers
         }
 
         
-            public ActionResult List()
+            public ActionResult List(int id)
             {
-            var people = _personService.GetAll();
             
-            
+            var Members = _memberService.GetPeople(id);
 
-            return PartialView("~/Views/Member/_List.cshtml", people);
+            return PartialView("~/Views/Member/_List.cshtml", Members);
             }
         
         }

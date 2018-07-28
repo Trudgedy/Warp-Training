@@ -1,4 +1,4 @@
-﻿@*@model Library.Data.Models.Common.PersonModel*@
+﻿@model Library.Data.Models.Common.Group
 
 @{
     ViewBag.Title = "Add";
@@ -9,11 +9,25 @@
 
 
 <div>
-    Name:
-    @Html.DropDownList("PersonID", new SelectList(ViewBag.PersonId, "PersonId", "Name"))
+    @using (Html.BeginForm("LinkMember", "Member", new { id = Model.GroupId }, FormMethod.Post, null))
+    {
+        //@Html.Hidden("GroupId", new { id = Model.GroupId })
+        @Html.DropDownList("PersonID", new SelectList(ViewBag.PersonId, "PersonId", "Name"))
+        <input type = "submit" value = "Send" class="btn btn-default"/>
+    }
+
+
+
+
+
+
+
+        
+    
+    
    
-    @Html.ActionLink("Add Member", "LinkMember", "Member", new { GroupId = Request.Url.Segments[3]}, null)
+    
 </div>
 
 
-@*new { GroupId = Request.Url.Segments[3]}*@
+

@@ -14,10 +14,14 @@ namespace WebApp.Controllers
     {
 
         IPersonService _personService;
+        IGroupService _groupService;
+        IMemberService _memberService;
 
-        public MemberController(IPersonService personService)
+        public MemberController(IPersonService personService, IGroupService groupService, IMemberService memberService)
         {
+            _groupService = groupService;
             _personService = personService;
+            _memberService = memberService;
         }
 
         public ActionResult Add(int id)
@@ -26,16 +30,27 @@ namespace WebApp.Controllers
             var person = _personService.GetAll();
 
             ViewBag.PersonId = person;
-            
 
-            return View();
+            var model = _groupService.GetById(id);
+
+            return View(model);
         }
 
-        public ActionResult LinkMember(int GroupId)
+        [HttpPost]
+        public ActionResult LinkMember(int id, Person model)
         {
-            String PersonId = Request["PersonID"];
+            var url = Url.RequestContext.RouteData.Values["id"];
+            var selectedPerson = model.PersonId;
 
-            return RedirectToAction("Edit", "Groups", new { id = GroupId });
+            var member = new Member();
+            member.GroupId = id;
+            member.PersonId = selectedPerson;
+
+
+            _memberService.Insert(member);
+
+
+            return RedirectToAction("Edit", "Groups", new { id = 1 });
             
         }
     }
