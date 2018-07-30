@@ -15,12 +15,13 @@ namespace WebApp
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            DependencyConfig.RegisterDependencies();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-			DependencyConfig.RegisterDependencies();
             AutoMapperConfig.RegisterAutoMapperConfig();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            
         }
     }
 }

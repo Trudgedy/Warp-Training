@@ -1,15 +1,13 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Autofac.Integration.WebApi;
 using System.Reflection;
-using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace WebApp.App_Start
 {
-	public class DependencyConfig 
+    public class DependencyConfig 
 	{
 
 		public static void RegisterDependencies()
@@ -20,7 +18,7 @@ namespace WebApp.App_Start
 			builder.RegisterModule<AutofacWebTypesModule>();
 
 			// Register Web Api controllers
-			//builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+			builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
 			// Change controller action parameter injection by changing web.config
 			builder.RegisterType<ExtensibleActionInvoker>().As<IActionInvoker>().InstancePerRequest();
@@ -46,7 +44,7 @@ namespace WebApp.App_Start
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
 			// Set the Web Api resolver
-			//GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+			GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 		}
 	}
 }

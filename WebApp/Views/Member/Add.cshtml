@@ -12,10 +12,15 @@
     @using (Html.BeginForm("LinkMember", "Member", new { id = Model.GroupId }, FormMethod.Post, null))
     {
         //@Html.Hidden("GroupId", new { id = Model.GroupId })
-        @Html.DropDownList("PersonID", new SelectList(ViewBag.PersonId, "PersonId", "Name"))
+        @Html.DropDownList("PersonID", new SelectList(ViewBag.PersonId, null, "Name", null, new { @class = "chosen-select-single" }))
+
         <input type = "submit" value = "Send" class="btn btn-default"/>
     }
-
+    <script>
+        $(document).ready(function () {
+            $(".chosen-select-single").chosen();
+        });
+    </script>
 
 
 

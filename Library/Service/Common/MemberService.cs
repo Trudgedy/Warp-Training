@@ -80,6 +80,7 @@ namespace Library.Service.Common
             _memberRepo.Insert(member);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
             _cacheManager.RemoveByPattern("WarpTraining.Person");
+            
         }
 
         public void Update(Member member)

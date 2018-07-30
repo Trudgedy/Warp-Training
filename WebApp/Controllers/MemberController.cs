@@ -39,7 +39,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult LinkMember(int id, Person model)
         {
-            var url = Url.RequestContext.RouteData.Values["id"];
+            
             var selectedPerson = model.PersonId;
 
             var member = new Member();
@@ -50,7 +50,7 @@ namespace WebApp.Controllers
             _memberService.Insert(member);
 
 
-            return RedirectToAction("Edit", "Groups", new { id = 1 });
+            return RedirectToAction("Edit", "Groups", new { id = id });
             
         }
     }

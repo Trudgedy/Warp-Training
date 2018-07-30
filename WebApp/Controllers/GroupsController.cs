@@ -13,13 +13,13 @@ namespace WebApp.Controllers
     public class GroupsController : Controller
     {
         IGroupService _groupService;
-        IPersonService _personService;
+       
         IMemberService _memberService;
 
         public GroupsController(IGroupService groupService, IPersonService personService, IMemberService memberService)
         {
             _groupService = groupService;
-            _personService = personService;
+            
             _memberService = memberService;
             
         }
@@ -138,7 +138,7 @@ namespace WebApp.Controllers
         
             public ActionResult List(int id)
             {
-            
+
             var Members = _memberService.GetPeople(id);
 
             return PartialView("~/Views/Member/_List.cshtml", Members);

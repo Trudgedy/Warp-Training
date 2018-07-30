@@ -87,25 +87,28 @@ namespace Library.Service.Common
         {
             _groupRepo.Insert(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
-            _cacheManager.RemoveByPattern("WarpTraining.Member");
-            _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel.GetGroupList()");
+            
+            
         }
 
         public void Update(Group group)
         {
 
             _groupRepo.Update(group);
-            _cacheManager.RemoveByPattern(KEY_PATTERN);
-            _cacheManager.RemoveByPattern("WarpTraining.Member");
+            _cacheManager.RemoveByPattern(KEY_PATTERN);         
             _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel.GetGroupList()");
+
         }
 
         public void Delete(Group group)
         {
             _groupRepo.Delete(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
-            _cacheManager.RemoveByPattern("WarpTraining.Member");
             _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel.GetGroupList()");
+
 
         }
 

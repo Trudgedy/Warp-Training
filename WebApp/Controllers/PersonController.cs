@@ -1,16 +1,12 @@
 ﻿using Library.Service.Common;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Library.Data;
 using Library.Data.Models.Common;
 using AutoMapper;
 
 namespace WebApp.Controllers
 {
-	public class PersonController : Controller
+    public class PersonController : Controller
 	{
 		IPersonService _personService;
 
