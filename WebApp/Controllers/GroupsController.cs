@@ -13,24 +13,25 @@ namespace WebApp.Controllers
     public class GroupsController : Controller
     {
         IGroupService _groupService;
-       
+        IPersonService _personService;
         IMemberService _memberService;
 
         public GroupsController(IGroupService groupService, IPersonService personService, IMemberService memberService)
         {
             _groupService = groupService;
-            
+            _personService = personService;
             _memberService = memberService;
-            
+
         }
 
         // GET: Groups
+
         public ActionResult Index()
         {
 
             var group = _groupService.GetGroupList();
 
-            
+
 
 
 
@@ -78,6 +79,10 @@ namespace WebApp.Controllers
         // GET: Groups/Edit/5
         public ActionResult Edit(int id)
         {
+            var person = _personService.GetAll();
+
+            ViewBag.PersonId = person;
+
             var group = _groupService.GetById(id);
 
             var model = Mapper.Map<GroupModel>(group);
@@ -104,7 +109,7 @@ namespace WebApp.Controllers
 
                 return View();
             }
-           
+
         }
 
         // GET: Groups/Delete/5
@@ -135,14 +140,14 @@ namespace WebApp.Controllers
             }
         }
 
-        
-            public ActionResult List(int id)
-            {
 
+        public ActionResult List(int id)
+        {
+            ViewBag.GroupId = id;
             var Members = _memberService.GetPeople(id);
 
             return PartialView("~/Views/Member/_List.cshtml", Members);
-            }
-        
         }
+
+    }
 }

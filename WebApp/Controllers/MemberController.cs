@@ -24,20 +24,8 @@ namespace WebApp.Controllers
             _memberService = memberService;
         }
 
-        public ActionResult Add(int id)
-        {
-
-            var person = _personService.GetAll();
-
-            ViewBag.PersonId = person;
-
-            var model = _groupService.GetById(id);
-
-            return View(model);
-        }
-
         [HttpPost]
-        public ActionResult LinkMember(int id, Person model)
+        public void LinkMember(int id, Person model)
         {
             
             var selectedPerson = model.PersonId;
@@ -49,8 +37,6 @@ namespace WebApp.Controllers
 
             _memberService.Insert(member);
 
-
-            return RedirectToAction("Edit", "Groups", new { id = id });
             
         }
     }

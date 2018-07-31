@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Group</h4>
         <hr />
@@ -33,9 +33,64 @@
     </div>
 }
 
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
 
 
-<div>@Html.Action("List", "Groups", new { id = Model.GroupId })</div>
+                @using (Html.BeginForm("Member", "LinkMember", FormMethod.Post))
+                {
+
+                    @Html.DropDownList("PersonID", new SelectList(ViewBag.PersonId, "PersonId", "Name"))
+
+
+                    <button id="Add" type="submit" onclick="RefreshPartial(@Model.GroupId)"
+                            class="btn btn-default" data-dismiss="modal">
+                        Add
+                    </button>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<button type="button" onclick="RefreshPartial(@Model.GroupId)">Click</button>
+
+<script>
+    function RefreshPartial(id) {
+
+        //var $form = $("#Add).parents('form');
+        //$.ajax({
+        //    type: "POST",
+        //    data: $form.serialize(),
+        //    success: function (result) {
+        //        $('#PartialList').html(result);
+        //    }
+        //});
+
+        $.get('/Groups/List/', { id: id }, function (result) {
+            $('#PartialList').html(result);
+        }
+        );
+    }
+
+</script>
+
+<div id="PartialList">@Html.Action("List", "Groups")</div>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
