@@ -15,8 +15,8 @@ namespace Library.Service.Common
 		protected const String KEY_GETALL = "WarpTraining.Person.GetAll()";
 		protected const String KEY_GETBYID = "WarpTraining.Person.GetById({0})";
 		protected const String PATTERN = "WarpTraining.Person";
+        protected const String KEY_GETBYEMAIL = "WarpTraining.Person.GetById({0})";
         
-
         IDataRepository<Person> _personRepo;
 		IDataRepository<Member> _memberRepo;
 		ICacheManager _cacheManager;
@@ -48,7 +48,17 @@ namespace Library.Service.Common
 			});
 		}
 
-		public Data.Models.Common.Person FindById(int id)
+        public Data.Models.Common.Person GetByEmail(string id)
+        {
+            String key = String.Format(KEY_GETBYEMAIL, id);
+
+            return _cacheManager.Get<Data.Models.Common.Person>(key, 10, () =>
+            {
+                return _personRepo.Table.FirstOrDefault(p => p.Email == id);
+            });
+        }
+
+        public Data.Models.Common.Person FindById(int id)
 		{
 			String key = String.Format(KEY_GETBYID, id);
 

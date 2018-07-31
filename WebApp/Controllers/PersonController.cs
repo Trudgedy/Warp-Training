@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Library.Data.Models.Common;
 using AutoMapper;
+using Library.Core.Crypto;
 
 namespace WebApp.Controllers
 {
@@ -59,6 +60,8 @@ namespace WebApp.Controllers
 
 				var person = Mapper.Map<Person>(model);
 
+                person.Salt = Hash.GetSalt();
+                person.Password = Hash.GetHash(model.Password, person.Salt);
 				_personService.Insert(person);
 
 				return RedirectToAction("Index");
@@ -90,8 +93,10 @@ namespace WebApp.Controllers
 				var person = _personService.GetById(model.PersonId);
 				person.Name = model.Name;
 				person.Email = model.Email;
+                person.Salt = Hash.GetSalt();
+                person.Password = Hash.GetHash(model.Password, person.Salt);
 
-				_personService.Update(person);
+                _personService.Update(person);
 
 				return RedirectToAction("Index");
 			}

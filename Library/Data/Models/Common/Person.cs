@@ -18,9 +18,13 @@ namespace Library.Data.Models.Common
 
 		public String Email { get; set; }
 
-		#region Navigational Properties
+        public String Password { get; set; }
 
-		public ICollection<Member> Members { get; set; }
+        public String Salt { get; set; }
+
+        #region Navigational Properties
+
+        public ICollection<Member> Members { get; set; }
 
 
 		#endregion

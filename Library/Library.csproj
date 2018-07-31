@@ -99,7 +99,6 @@
     <Compile Include="Data\Models\Common\Member.cs" />
     <Compile Include="Data\Models\Common\PersonModel.cs" />
     <Compile Include="Data\Models\Common\Person.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Cache\CacheExtensions.cs" />
     <Compile Include="Service\Cache\ICacheManager.cs" />
@@ -110,6 +109,7 @@
     <Compile Include="Service\Common\IPersonService.cs" />
     <Compile Include="Service\Common\MemberService.cs" />
     <Compile Include="Service\Common\PersonService.cs" />
+    <Compile Include="Utils\Hash.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -117,7 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
-    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\chosen-sprite%402x.png" />
