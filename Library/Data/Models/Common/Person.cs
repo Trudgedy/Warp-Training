@@ -22,6 +22,8 @@ namespace Library.Data.Models.Common
 
         public String Salt { get; set; }
 
+        public Guid PersonGuid { get; set; }
+
         #region Navigational Properties
 
         public ICollection<Member> Members { get; set; }

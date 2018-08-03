@@ -12,7 +12,7 @@ using AutoMapper;
 namespace Library.Service.Common
 {
 
-
+    
     public class GroupService : IGroupService
     {
         #region Constants

@@ -10,6 +10,7 @@ using AutoMapper;
 
 namespace WebApp.Controllers
 {
+    [Library.Web.Mvc.Filters.Filter]
     public class GroupsController : Controller
     {
         IGroupService _groupService;

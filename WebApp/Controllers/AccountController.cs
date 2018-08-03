@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace WebApp.Controllers
 {
+    
     public class AccountController : Controller
     {
         IPersonService _personService;
@@ -33,9 +35,20 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Login(Person Model)
         {
-            var CurrentPerson = _personService.GetByEmail(Model.Email);
-            var InputPassword = Hash.GetHash(Model.Password, CurrentPerson.Salt);
-            var result = (InputPassword == CurrentPerson.Password);
+            var person = _personService.GetByEmail(Model.Email);
+            var InputPassword = Hash.GetHash(Model.Password, person.Salt);
+
+            if (InputPassword == person.Password)
+            {
+                //TODO update person guid
+                //Guid.NewGuid()
+                person.PersonGuid = Guid.NewGuid();
+                _personService.Update(person);
+
+                Response.Cookies.Add(new HttpCookie("TrainingAuth", person.PersonGuid.ToString()));
+                return Redirect("/Person/Index");
+            }
+
             return View();
         }
     }

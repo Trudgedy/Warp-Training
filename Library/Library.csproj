@@ -110,6 +110,7 @@
     <Compile Include="Service\Common\IPersonService.cs" />
     <Compile Include="Service\Common\MemberService.cs" />
     <Compile Include="Service\Common\PersonService.cs" />
+    <Compile Include="Utils\Filter.cs" />
     <Compile Include="Utils\Hash.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -131,5 +131,46 @@ namespace WebApp.Controllers
 				return View();
 			}
 		}
-	}
+
+        public ActionResult DownloadPerson()
+        {
+            // Create a new workbook.
+            SpreadsheetGear.IWorkbook workbook = SpreadsheetGear.Factory.GetWorkbook();
+            SpreadsheetGear.IWorksheet worksheet = workbook.Worksheets["Sheet1"];
+            SpreadsheetGear.IRange cells = worksheet.Cells;
+
+            // Set the worksheet name.
+            worksheet.Name = "List of People";
+
+            // Load column titles and center.
+            cells["B1"].Formula = "Name";
+            cells["C1"].Formula = "Email";
+            cells["D1"].Formula = "Password";
+
+
+
+           
+            var people = _personService.GetAll();
+            var count = 1;
+            foreach (var item in people)
+            {
+                cells["B" + count].Formula = item.Name;
+                cells["C" + count].Formula = item.Email;
+                cells["D" + count].Formula = item.Password;
+                count++;
+            }
+            
+            // Save workbook to an Open XML (XLSX) workbook stream.
+            System.IO.Stream stream = workbook.SaveToStream(
+                SpreadsheetGear.FileFormat.OpenXMLWorkbook);
+
+            // Reset stream's current position back to the beginning.
+            stream.Seek(0, System.IO.SeekOrigin.Begin);
+
+            // Stream the Excel spreadsheet to the client in a format
+            // compatible with Excel 97/2000/XP/2003/2007/2010/2013/2016.
+            return new FileStreamResult(stream,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        }
+    }
 }

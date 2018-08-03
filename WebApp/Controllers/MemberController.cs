@@ -10,6 +10,7 @@ using AutoMapper;
 
 namespace WebApp.Controllers
 {
+    
     public class MemberController : Controller
     {
 

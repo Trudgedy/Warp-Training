@@ -16,6 +16,8 @@ namespace Library.Service.Common
 		Person FindById(int id);
 
         Person GetByEmail(string id);
+
+        Person GetByGuid(Guid id);
     
 
 		void Insert(Person person);

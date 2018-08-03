@@ -1,12 +1,8 @@
 ﻿@model List<Library.Data.Models.Common.Person>
 @{
-	ViewBag.Title = "Index";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-	
-
-
 
 
 <h2>Index</h2>
@@ -34,11 +30,13 @@
 			@Html.DisplayFor(modelItem => item.Email)
 		</td>
 		<td>
-			@Html.ActionLink("Edit", "Edit", new { id=item.PersonId }) |
-			@Html.ActionLink("Details", "Details", new { id=item.PersonId }) |
-			@Html.ActionLink("Delete", "Delete", new { id=item.PersonId })
+			@Html.ActionLink("Edit", "Edit", new { id = item.PersonId }) |
+			@Html.ActionLink("Details", "Details", new { id = item.PersonId }) |
+			@Html.ActionLink("Delete", "Delete", new { id = item.PersonId })
 		</td>
 	</tr>
 }
 
 </table>
+
+@Html.ActionLink("Download", "DownloadPerson", "Person", new {@class = "btn btn-default"})
