@@ -80,7 +80,8 @@ namespace Library.Service.Common
             _memberRepo.Insert(member);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
             _cacheManager.RemoveByPattern("WarpTraining.Person");
-            
+            _cacheManager.RemoveByPattern("WarpTraining.Group");
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
         }
 
         public void Update(Member member)
@@ -89,6 +90,8 @@ namespace Library.Service.Common
             _memberRepo.Update(member);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
             _cacheManager.RemoveByPattern("WarpTraining.Person");
+            _cacheManager.RemoveByPattern("WarpTraining.Group");
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
         }
 
         public void Delete(Member member)
@@ -96,6 +99,8 @@ namespace Library.Service.Common
             _memberRepo.Delete(member);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
             _cacheManager.RemoveByPattern("WarpTraining.Person");
+            _cacheManager.RemoveByPattern("WarpTraining.Group");
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
         }
     }
 }

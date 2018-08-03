@@ -10,7 +10,8 @@ namespace WebApp
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/chosen.jquery.js"));
+                        "~/Scripts/chosen.jquery.js",
+                        "~/Scripts/DataTables/jquery.dataTables.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -29,13 +30,10 @@ namespace WebApp
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-chosen.css",
-                      "~/Content/DataTables/css/jquery.dataTables.cs",
-                      "~/Content/DataTables/css/jquery.dataTables.min.css"));
+                      "~/Content/DataTables/css/jquery.dataTables.css"
+                      ));
 
-            bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
-                    "~/Scripts/DataTables/jquery.dataTables.js",
-                    "~/Scripts/DataTables/dataTables.bootstrap.js"
-                ));
+            
         }
     }
 }

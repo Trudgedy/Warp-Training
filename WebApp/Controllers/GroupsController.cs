@@ -31,10 +31,6 @@ namespace WebApp.Controllers
 
             var group = _groupService.GetGroupList();
 
-
-
-
-
             return View(group);
         }
 

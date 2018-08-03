@@ -25,14 +25,14 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public void LinkMember(int id, Person model)
+        public void LinkMember(int id, int PersonId)
         {
+
             
-            var selectedPerson = model.PersonId;
 
             var member = new Member();
             member.GroupId = id;
-            member.PersonId = selectedPerson;
+            member.PersonId = PersonId;
 
 
             _memberService.Insert(member);

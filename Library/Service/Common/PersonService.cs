@@ -34,7 +34,7 @@ namespace Library.Service.Common
 		{
 			return _cacheManager.Get<List<Data.Models.Common.Person>>(KEY_GETALL, 10, () =>
 			{
-				return _personRepo.Table.OrderBy(p=> p.Email).Skip(page*pageSize).Take(pageSize).ToList();
+				return _personRepo.Table.OrderBy(p=> p.Name).Skip(page*pageSize).Take(pageSize).ToList();
 			});
 		}
 

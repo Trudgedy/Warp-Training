@@ -33,7 +33,7 @@
     </div>
 }
 
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -47,10 +47,10 @@
             <div class="modal-body">
 
 
-                @using (Html.BeginForm("Member", "LinkMember", FormMethod.Post))
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "add" }))
                 {
 
-                    @Html.DropDownList("PersonID", new SelectList(ViewBag.PersonId, "PersonId", "Name"))
+                    @Html.DropDownList("PersonID", new SelectList(ViewBag.PersonId, "PersonId", "Name") , new { @class = "chosen-select" })
 
 
                     <button id="Add" type="submit" onclick="RefreshPartial(@Model.GroupId)"
@@ -67,30 +67,34 @@
     </div>
 </div>
 
+<script>
+    $(".chosen-select").chosen({width: "35%"})   
+</script>
 
-<button type="button" onclick="RefreshPartial(@Model.GroupId)">Click</button>
 
 <script>
     function RefreshPartial(id) {
 
-        //var $form = $("#Add).parents('form');
-        //$.ajax({
-        //    type: "POST",
-        //    data: $form.serialize(),
-        //    success: function (result) {
-        //        $('#PartialList').html(result);
-        //    }
-        //});
+        var SelectedUser = $("#PersonID").val();
+        $.ajax({
+            url: "/Member/LinkMember",
+            data: { id: id, PersonId: SelectedUser },
+            type: "POST",
+            success: function (result) {
+                $.get('/Groups/List/', { id: id }, function (result) {
+                    $('#PartialList').html(result);
+                }
+              );
+            }
+        });
 
-        $.get('/Groups/List/', { id: id }, function (result) {
-            $('#PartialList').html(result);
-        }
-        );
+
     }
 
 </script>
 
 <div id="PartialList">@Html.Action("List", "Groups")</div>
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Add Member</button>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
 </div>

@@ -29,11 +29,11 @@ namespace Library.Service.Common
         #endregion
 
         #region Constructor
-        public GroupService(IDataRepository<Group> groupRepo, ICacheManager cacheManager, IDataRepository<Member> memberRepo)
+        public GroupService(IDataRepository<Group> groupRepo, IDataRepository<Member> memberRepo, ICacheManager cacheManager)
         {
             _groupRepo = groupRepo;
-            _cacheManager = cacheManager;
             _memberRepo = memberRepo;
+            _cacheManager = cacheManager;
         }
         #endregion
 
@@ -58,7 +58,7 @@ namespace Library.Service.Common
                                  Count = _memberRepo.Table.Where(m => m.GroupId == g.GroupId).Count()
                              };
 
-                return result.OrderBy(p => p.Name).Skip(page * pageSize).Take(pageSize).ToList(); ;
+                return result.OrderBy(p => p.Count).Skip(page * pageSize).Take(pageSize).ToList(); ;
             });
             }
 
@@ -87,9 +87,8 @@ namespace Library.Service.Common
         {
             _groupRepo.Insert(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
-            _cacheManager.RemoveByPattern("WarpTraining.GroupModel.GetGroupList()");
-            
-            
+            _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
+            _cacheManager.RemoveByPattern("WarpTraining.Member");
         }
 
         public void Update(Group group)
@@ -98,8 +97,7 @@ namespace Library.Service.Common
             _groupRepo.Update(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);         
             _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
-            _cacheManager.RemoveByPattern("WarpTraining.GroupModel.GetGroupList()");
-
+            _cacheManager.RemoveByPattern("WarpTraining.Member");
         }
 
         public void Delete(Group group)
@@ -107,9 +105,7 @@ namespace Library.Service.Common
             _groupRepo.Delete(group);
             _cacheManager.RemoveByPattern(KEY_PATTERN);
             _cacheManager.RemoveByPattern("WarpTraining.GroupModel");
-            _cacheManager.RemoveByPattern("WarpTraining.GroupModel.GetGroupList()");
-
-
+            _cacheManager.RemoveByPattern("WarpTraining.Member");
         }
 
     }
