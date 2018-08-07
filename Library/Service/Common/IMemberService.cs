@@ -14,8 +14,8 @@ namespace Library.Service.Common
         List<Person> GetPeople(int GroupId, int pageSize = 1000, int page = 0);
 
         Member GetById(int id);
-        
 
+        List<Person> GetAvailable(int GroupId, int pageSize = 1000, int page = 0);
 
         void Insert(Member Member);
 

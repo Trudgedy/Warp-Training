@@ -76,7 +76,7 @@ namespace WebApp.Controllers
         // GET: Groups/Edit/5
         public ActionResult Edit(int id)
         {
-            var person = _personService.GetAll();
+            var person = _memberService.GetAvailable(id);
 
             ViewBag.PersonId = person;
 

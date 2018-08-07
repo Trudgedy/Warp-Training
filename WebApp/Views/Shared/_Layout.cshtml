@@ -28,7 +28,7 @@
                     <li>@Html.ActionLink("Groups", "Index", "Groups")</li>
                     <li>@Html.ActionLink("Help", "Index", "Help")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Action("LoginPartial", "Account")
             </div>
         </div>
     </div>

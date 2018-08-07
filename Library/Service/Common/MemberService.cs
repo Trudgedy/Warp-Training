@@ -18,6 +18,7 @@ namespace Library.Service.Common
         protected const String KEY_GET_ALL = "WarpTraining.Member.GetAll()";
         protected const String KEY_GET_BY_ID = "WarpTraining.Member.GetById({0})";
         protected const String KEY_GET_PEOPLE_BY_ID = "WarpTraining.Member.GetPeople({0})";
+        protected const String KEY_GET_AVAILABLE = "WarpTraining.Member.GetAvailable({0})";
         #endregion
 
         #region Fields
@@ -55,13 +56,25 @@ namespace Library.Service.Common
                              where m.GroupId == GroupId
                              select p;
 
-                
-                
+                return result.OrderBy(p => p.Name).Skip(page * pageSize).Take(pageSize).ToList();
+            });
+        }
+
+        public List<Person> GetAvailable(int GroupId, int pageSize = 1000, int page = 0)
+        {
+            var key = String.Format(KEY_GET_AVAILABLE, GroupId);
+
+            return _cacheManager.Get<List<Data.Models.Common.Person>>(key, 10, () =>
+            {
+                var result = from p in _personRepo.Table
+                             //from m in _memberRepo.Table
+                             where !_memberRepo.Table.Any(m => (m.PersonId == p.PersonId))       
+                             select p;
 
                 return result.OrderBy(p => p.Name).Skip(page * pageSize).Take(pageSize).ToList();
             });
-
         }
+        
 
 
         public Member GetById(int id)
